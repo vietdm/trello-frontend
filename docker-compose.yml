@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  trello_frontend:
+    container_name: trello_frontend
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/trello_frontend
+    command: sh -c "/trello_frontend/docker-command.sh"
+    environment:
+      NODE_ENV: development
+    networks:
+      - trello_frontend_network
+
+networks:
+  trello_frontend_network:
+    driver: bridge
