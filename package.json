@@ -10,14 +10,17 @@
     "fix-lint": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.11",
+    "@reduxjs/toolkit": "^1.9.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.3",
     "next": "latest",
+    "next-redux-wrapper": "^8.1.0",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "^1.14.0",

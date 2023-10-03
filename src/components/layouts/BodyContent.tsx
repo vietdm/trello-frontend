@@ -3,7 +3,13 @@ import {Container} from "@/components/ui/Container";
 import {ReactNode, useEffect, useRef, useState} from "react";
 import {Text} from "@/components/ui/Text";
 
-export const BodyContent = ({children, title}: { children: ReactNode, title?: ReactNode }) => {
+type Props = {
+    children: ReactNode;
+    title?: ReactNode;
+    onReady?: () => void;
+};
+
+export const BodyContent = ({children, title, onReady}: Props) => {
   const bodyContentRef = useRef<HTMLDivElement | null>(null);
   const bodyTitleRef = useRef<HTMLDivElement | null>(null);
   const [contentHeight, setContentHeight] = useState<string>('100%');
@@ -27,7 +33,10 @@ export const BodyContent = ({children, title}: { children: ReactNode, title?: Re
     } else {
       setContentHeight(`calc(100vh - ${totalHeight}px - 1.5rem)`);
     }
-  }, [bodyContentRef, title]);
+    if (typeof onReady === 'function') {
+      onReady();
+    }
+  }, [bodyContentRef, onReady, title]);
 
   return (
     <Box ref={bodyContentRef} className="py-[.75rem]">
@@ -37,7 +46,8 @@ export const BodyContent = ({children, title}: { children: ReactNode, title?: Re
             <Text weight="semibold">{title}</Text>
           </Box>
         )}
-        <Box className="p-[15px] rounded-xl border overflow-auto" style={{height: contentHeight, maxHeight: contentHeight}}>
+        <Box className="p-[15px] rounded-xl border overflow-auto"
+          style={{height: contentHeight, maxHeight: contentHeight}}>
           {children}
         </Box>
       </Container>
