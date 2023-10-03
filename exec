@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker-compose exec trello_frontend sh

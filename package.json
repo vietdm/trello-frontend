@@ -10,12 +10,18 @@
     "fix-lint": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.3",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "tailwind-merge": "^1.14.0"
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "latest",
