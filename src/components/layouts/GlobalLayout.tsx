@@ -7,13 +7,14 @@ import {cn} from "@/utils/ui";
 
 type Props = {
     children: ReactNode;
+    titleRightEl?: ReactNode;
     onReady?: () => void;
     title?: string;
     bodyClassName?: string;
     bgSrc?: string;
 };
 
-export const GlobalLayout = ({children, onReady, title, bodyClassName, bgSrc}: Props) => {
+export const GlobalLayout = ({children, onReady, title, titleRightEl, bodyClassName, bgSrc}: Props) => {
   const loading = useLoading();
 
   const onBodyContentReady = () => {
@@ -27,7 +28,11 @@ export const GlobalLayout = ({children, onReady, title, bodyClassName, bgSrc}: P
   return (
     <main className={cn(bgSrc ? 'bg-no-repeat bg-center bg-cover' : '')} style={{ backgroundImage: bgSrc ? `url(${bgSrc})` : undefined}}>
       <HeaderNavbar/>
-      <BodyContent title={title} onReady={onBodyContentReady} bodyClassName={bodyClassName}>
+      <BodyContent
+        title={title}
+        rightEl={titleRightEl}
+        onReady={onBodyContentReady}
+        bodyClassName={bodyClassName}>
         {children}
       </BodyContent>
       <Footer/>

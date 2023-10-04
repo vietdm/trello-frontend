@@ -2,6 +2,7 @@ import {GlobalLayout} from "@/components/layouts/GlobalLayout";
 import {Flex} from "@/components/ui/Flex";
 import {useEffect, useRef} from "react";
 import {BoxTask} from "@/components/pages/board/BoxTask";
+import {Button} from "@/components/ui/Button";
 
 export default function BoardDetail() {
   const contentRef = useRef<HTMLDivElement>(null);
