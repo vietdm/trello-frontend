@@ -11,7 +11,7 @@ type Props = {
 
 export const BoardItem = ({src, uid}: Props) => {
   return (
-    <Flex justify="between">
+    <Flex justify="between" className="bg-white rounded-xl p-[10px] mb-2">
       <Flex className="w-[calc(100%-80px)]">
         <Box className='w-[80px] h-[80px] bg-cover bg-no-repeat bg-center rounded-xl' style={{ backgroundImage: `url('${src}')`}} />
         <Text className='w-[calc(100%-80px)] pl-[15px]'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</Text>
