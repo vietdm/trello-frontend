@@ -1,4 +1,5 @@
-export const BOARD_GET_ALL: string = 'api/v1/board/all';
+export const PROJECT_GET_ALL: string = 'api/v1/project/all';
+export const BOARD_GET_ALL: string = 'api/v1/board/all/{uuid-project}';
 export const BOARD_GET_PATH: string = 'api/v1/board/paths';
 export const BOARD_GET_TASK: string = 'api/v1/board/{uuid}/task';
 export const BOARD_GET_ONE: string = 'api/v1/board/{uuid}';

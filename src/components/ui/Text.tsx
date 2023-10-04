@@ -13,6 +13,7 @@ const textVariants = cva('m-0 not-italic tracking-normal leading-none', {
       xs: 'text-xs',
     },
     col: {
+      red: 'text-[red]',
       white: 'text-white',
       primary: 'text-primary',
       black: 'text-black',

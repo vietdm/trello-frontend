@@ -1,41 +1,41 @@
-import {TBoards} from "@/@types/board";
+import {TProjects} from "@/@types/project";
 import {Box} from "@/components/ui/Box";
-import {BoardItem} from "@/components/pages/home/BoardItem";
+import {ProjectItem} from "@/components/pages/home/ProjectItem";
 import {GlobalLayout} from "@/components/layouts/GlobalLayout";
 import {Button} from "@/components/ui/Button";
-import {CreateBoardModal} from "@/components/modals/CreateBoard";
+import {CreateProjectModal} from "@/components/modals/CreateProject";
 import {Text} from "@/components/ui/Text";
-import {useBoardAllQuery} from "@/queries/board/all";
+import {useProjectAllQuery} from "@/queries/project/all";
 import {useEffect, useState} from "react";
 
 export default function Home() {
-  const [isOpenModalCreateBoard, setOpenModalCreateBoard] = useState<boolean>(false);
-  const [boards, setBoards] = useState<TBoards>([]);
-  const allBoard = useBoardAllQuery();
+  const [isOpenModalCreateProject, setOpenModalCreateProject] = useState<boolean>(false);
+  const [projects, setProjects] = useState<TProjects>([]);
+  const allProject = useProjectAllQuery();
 
   useEffect(() => {
-    if (allBoard) {
-      setBoards(allBoard.data.boards);
+    if (allProject) {
+      setProjects(allProject.data.projects);
     }
-  }, [allBoard]);
+  }, [allProject]);
 
   return (
     <GlobalLayout
       bgSrc='https://trello-backgrounds.s3.amazonaws.com/5acc9426bfa043c72b56488a/1920x1920/7b5d121c88219628ecb1f0ec46283017/shutterstock_134707556.jpeg.jpg'
-      titleRightEl={<Button onClick={() => setOpenModalCreateBoard(true)}>Create</Button>}
+      titleRightEl={<Button onClick={() => setOpenModalCreateProject(true)}>Create Project</Button>}
       title="Your Boards">
       <Box>
-        {boards.map((board, index) => (
-          <BoardItem
+        {projects.map((project, index) => (
+          <ProjectItem
             key={`board-${index}`}
-            board={board}
+            project={project}
           />
         ))}
-        {boards.length === 0 && (
-          <Text align="center" className='bg-white py-[15px] rounded-xl'>No board!</Text>
+        {projects.length === 0 && (
+          <Text align="center" className='bg-white py-[15px] rounded-xl'>No projects!</Text>
         )}
       </Box>
-      <CreateBoardModal isOpen={isOpenModalCreateBoard} onClose={() => setOpenModalCreateBoard(false)} />
+      <CreateProjectModal isOpen={isOpenModalCreateProject} onClose={() => setOpenModalCreateProject(false)} />
     </GlobalLayout>
   )
 }

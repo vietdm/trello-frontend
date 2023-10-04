@@ -13,14 +13,15 @@ type Props = {
     variant?: TVariantClass;
     className?: string;
     onClick?: () => void;
+    type?: 'button' | 'submit';
 };
 
-export const Button = ({children, variant = 'primary', onClick, className}: Props) => {
+export const Button = ({children, variant = 'primary', type = 'button', onClick, className}: Props) => {
   return (
     <button
       className={cn(variantClass[variant], className ?? '')}
       onClick={onClick}
-      type="button">
+      type={type}>
       {children}
     </button>
   );
