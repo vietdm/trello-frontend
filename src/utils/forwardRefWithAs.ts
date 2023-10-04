@@ -1,4 +1,4 @@
-import {
+import React, {
   type ComponentPropsWithoutRef,
   type ElementType,
   forwardRef,
@@ -20,7 +20,7 @@ export type AsProp<Comp extends ElementType, Props> = {
   ref?: Ref<
     Comp extends keyof ElementTagNameMap
       ? ElementTagNameMap[Comp]
-      : Comp extends new (...args: any) => any
+      : Comp extends new (...args: never) => never
         ? InstanceType<Comp>
         : undefined
   >;
@@ -35,7 +35,7 @@ export type CompWithAsProp<Props, DefaultElementType extends ElementType> = <
 export const forwardRefWithAs = <DefaultElementType extends ElementType, BaseProps>(
   render: (
     props: BaseProps & { as?: ElementType },
-    ref: React.Ref<any>
+    ref: React.Ref<never>
   ) => Exclude<ReactNode, undefined>
 ): CompWithAsProp<BaseProps, DefaultElementType> => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

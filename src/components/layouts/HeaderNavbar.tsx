@@ -3,7 +3,7 @@ import { Img } from "../ui/Img";
 
 export const HeaderNavbar = () => {
   return (
-    <Navbar fluid={true} rounded={true} id="section-header" className="shadow-normal">
+    <Navbar fluid={true} id="section-header" className="shadow-normal">
       <Navbar.Brand href="/">
         <Img
           src="/images/logo/logo-trans-min.png"
