@@ -6,6 +6,7 @@ import Loading from "@/components/layouts/Loading";
 import {wrapper} from "@/stores/store";
 import {FC} from "react";
 import createEmotionCache from '@emotion/cache'
+import {QueryClient, QueryClientProvider} from "react-query";
 import {Provider} from "react-redux";
 import {CacheProvider} from "@emotion/react";
 
@@ -15,6 +16,7 @@ const comfortaa = Comfortaa({
 });
 
 const clientSideEmotionCache = createEmotionCache({key: 'app-cached'});
+const queryClient = new QueryClient();
 
 const App: FC<AppProps> = ({Component, ...rest}: AppProps) => {
   const {store, props} = wrapper.useWrappedStore(rest);
@@ -23,14 +25,16 @@ const App: FC<AppProps> = ({Component, ...rest}: AppProps) => {
   return (
     <div id="root_app" className={comfortaa.className}>
       <Provider store={store}>
-        <CacheProvider value={emotionCache}>
-          <Head>
-            <title>VietD</title>
-            <link rel="shortcut icon" href="/images/logo/favicon.ico"/>
-          </Head>
-          <Component {...pageProps} />
-          <Loading/>
-        </CacheProvider>
+        <QueryClientProvider client={queryClient}>
+          <CacheProvider value={emotionCache}>
+            <Head>
+              <title>VietD</title>
+              <link rel="shortcut icon" href="/images/logo/favicon.ico"/>
+            </Head>
+            <Component {...pageProps} />
+            <Loading/>
+          </CacheProvider>
+        </QueryClientProvider>
       </Provider>
     </div>
   );
