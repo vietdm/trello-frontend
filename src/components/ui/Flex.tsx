@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { cva, type VariantProps } from 'class-variance-authority';
+import {cva, type VariantProps} from 'class-variance-authority';
 
-import { cn } from '@/utils/ui';
-import Box from "@/components/ui/Box";
+import {cn} from '@/utils/ui';
+import {Box} from "@/components/ui/Box";
 
 const flexVariants = cva('flex', {
   variants: {
@@ -50,18 +50,19 @@ const flexVariants = cva('flex', {
 });
 
 export interface ContainerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof flexVariants> {}
+    extends React.HTMLAttributes<HTMLDivElement>,
+        VariantProps<typeof flexVariants> {
+}
 
 const Flex = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, justify, items, wrap, direction, ...props }, ref) => (
+  ({className, justify, items, wrap, direction, ...props}, ref) => (
     <Box
       ref={ref}
-      className={cn(flexVariants({ justify, items, wrap, direction, className }))}
+      className={cn(flexVariants({justify, items, wrap, direction, className}))}
       {...props}
     />
   )
 );
 Flex.displayName = 'Flex';
 
-export { Flex };
+export {Flex};

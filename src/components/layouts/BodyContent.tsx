@@ -1,4 +1,4 @@
-import Box from "@/components/ui/Box";
+import {Box} from "@/components/ui/Box";
 import {Container} from "@/components/ui/Container";
 import {ReactNode, useEffect, useRef, useState} from "react";
 import {Text} from "@/components/ui/Text";

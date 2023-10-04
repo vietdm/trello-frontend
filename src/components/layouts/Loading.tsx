@@ -1,9 +1,26 @@
 import {Flex} from "@/components/ui/Flex";
-import {useSelector} from "react-redux";
-import {getIsLoading} from "@/stores/slices/loading";
+import {useDispatch, useSelector} from "react-redux";
+import {getIsLoading, setIsLoading} from "@/stores/slices/loading";
+import {useEffect} from "react";
+import {useRouter} from "next/router";
 
 export default function Loading() {
   const loading = useSelector(getIsLoading);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleStart = (url: string) => {
+    if (url !== router.asPath) {
+      dispatch(setIsLoading(true));
+    }
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', handleStart)
+    return () => {
+      router.events.off('routeChangeStart', handleStart)
+    }
+  })
 
   if (!loading) return <></>;
 

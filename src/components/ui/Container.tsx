@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { cva, type VariantProps } from 'class-variance-authority';
+import {cva, type VariantProps} from 'class-variance-authority';
 
-import { cn } from '@/utils/ui';
-import Box from "@/components/ui/Box";
+import {cn} from '@/utils/ui';
+import {Box} from "@/components/ui/Box";
 
 const containerVariants = cva('w-auto', {
   variants: {
@@ -22,16 +22,16 @@ const containerVariants = cva('w-auto', {
 });
 
 export interface ContainerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
-  fullWidth?: boolean;
+    extends React.HTMLAttributes<HTMLDivElement>,
+        VariantProps<typeof containerVariants> {
+    fullWidth?: boolean;
 }
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, background, fullWidth, ...props }, ref) => (
+  ({className, background, fullWidth, ...props}, ref) => (
     <Box
       ref={ref}
-      className={cn('m-auto', containerVariants({ background, className }), {
+      className={cn('m-auto', containerVariants({background, className}), {
         container: !fullWidth,
       })}
       {...props}
@@ -40,4 +40,4 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
 );
 Container.displayName = 'Container';
 
-export { Container };
+export {Container};

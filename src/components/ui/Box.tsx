@@ -14,5 +14,3 @@ export const Box = forwardRefWithAs<'div', BoxProps>((props, ref) => {
     </Tag>
   );
 });
-
-export default Box;
