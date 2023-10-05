@@ -1,4 +1,4 @@
-import {TApiSuccessResponse} from "@/@types/api-success-response";
+import {TApiSuccessResponse} from "@/@types/axios";
 import {TBoard} from "@/@types/board";
 import {TUser} from "@/@types/user";
 

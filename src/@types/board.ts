@@ -1,5 +1,6 @@
-import {TApiSuccessResponse} from "@/@types/api-success-response";
+import {TApiSuccessResponse} from "@/@types/axios";
 import {TProject} from "@/@types/project";
+import {TTasks} from "@/@types/task";
 import {TUser} from "@/@types/user";
 
 export type TBoard = {
@@ -9,7 +10,8 @@ export type TBoard = {
   description: string;
   created_at: string;
   user: TUser;
-  project: TProject
+  project: TProject;
+  tasks: TTasks;
 }
 
 export type TBoards = Array<TBoard>;

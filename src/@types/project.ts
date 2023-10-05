@@ -1,4 +1,4 @@
-import {TApiSuccessResponse} from "@/@types/api-success-response";
+import {TApiSuccessResponse} from "@/@types/axios";
 import {TUser} from "@/@types/user";
 
 export type TProject = {
@@ -14,3 +14,11 @@ export type TProjects = Array<TProject>;
 
 export type TProjectsQuery = TApiSuccessResponse<{projects: TProjects}>;
 export type TProjectQuery = TApiSuccessResponse<{projects: TProject}>;
+
+export type TProjectForm = {
+  title: string;
+  description: string;
+  user_uuid: string;
+};
+
+export type TProjectUpdateForm = Omit<TProjectForm, 'user_uuid'>;

@@ -1,4 +1,5 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 import type {AppProps} from 'next/app'
 import Head from 'next/head'
 import {Comfortaa} from 'next/font/google'
@@ -9,6 +10,7 @@ import createEmotionCache from '@emotion/cache'
 import {QueryClient, QueryClientProvider} from "react-query";
 import {Provider} from "react-redux";
 import {CacheProvider} from "@emotion/react";
+import {ToastContainer} from "react-toastify";
 
 const comfortaa = Comfortaa({
   weight: '400',
@@ -33,6 +35,7 @@ const App: FC<AppProps> = ({Component, ...rest}: AppProps) => {
             </Head>
             <Component {...pageProps} />
             <Loading/>
+            <ToastContainer />
           </CacheProvider>
         </QueryClientProvider>
       </Provider>

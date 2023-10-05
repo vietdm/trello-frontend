@@ -1,4 +1,4 @@
-import {TProjectForm} from "@/@types/project";
+import {TProjectUpdateForm} from "@/@types/project";
 import {Box} from "@/components/ui/Box";
 import {Input} from "@/components/ui/Input";
 import {Modal} from "@/components/ui/Modal";
@@ -7,50 +7,60 @@ import {Button} from "@/components/ui/Button";
 import {Text} from "@/components/ui/Text";
 import {Textarea} from "@/components/ui/Textarea";
 import {PROJECT_GET_ALL_QK} from "@/queries/project/all";
-import {useProjectCreateQuery} from "@/queries/project/create";
+import {useProjectUpdateQuery} from "@/queries/project/update";
 import {defaultOptionReactQueryResponse} from "@/utils/helper";
+import {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {useQueryClient} from "react-query";
 
 type Props = {
   isOpen: boolean;
+  formData: TProjectUpdateForm;
+  uuid: string;
   title?: string;
   onClose?: () => void;
 };
 
-export const CreateProjectModal = ({
+export const UpdateProjectModal = ({
   isOpen,
   onClose,
-  title = 'Create Project',
+  formData,
+  uuid,
+  title = 'Update Project',
 }: Props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     reset,
     formState: {errors}
-  } = useForm<TProjectForm>({
+  } = useForm<TProjectUpdateForm>({
     defaultValues: {
       title: '',
-      description: '',
-      user_uuid: '3115bfd9-4347-4417-ab72-da7b0ab5cb85'
+      description: ''
     }
   });
-  const projectCreateQuery = useProjectCreateQuery();
+  const projectUpdateQuery = useProjectUpdateQuery(uuid);
   const queryClient = useQueryClient();
 
   const defaultOptionMutate = defaultOptionReactQueryResponse(() => {
     reset();
     queryClient.invalidateQueries({queryKey: [PROJECT_GET_ALL_QK]});
     onClose && onClose();
-  })
+  });
 
-  const onSubmit = (form: TProjectForm) => {
-    projectCreateQuery.mutate(form, defaultOptionMutate);
+  useEffect(() => {
+    setValue('title', formData.title);
+    setValue('description', formData.description);
+  }, [formData, setValue]);
+
+  const onSubmit = (form: TProjectUpdateForm) => {
+    projectUpdateQuery.mutate(form, defaultOptionMutate);
   }
 
   return (
     <Modal
-      id='create-project-modal'
+      id='update-project-modal'
       isOpen={isOpen}
       title={title}
       onClose={onClose}>
@@ -76,7 +86,7 @@ export const CreateProjectModal = ({
         <Flex items="center" justify="center"
           className="p-6 border-t border-gray-200 rounded-b dark:border-gray-600 gap-[10px]">
           <Button type="submit">
-            Create
+            Update
           </Button>
           <Button variant='light' onClick={onClose}>
             Cancel

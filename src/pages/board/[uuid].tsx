@@ -2,22 +2,22 @@ import {TTasks} from "@/@types/task";
 import {GlobalLayout} from "@/components/layouts/GlobalLayout";
 import {Flex} from "@/components/ui/Flex";
 import {Text} from "@/components/ui/Text";
-import {useTaskAllQuery} from "@/queries/task/all";
-import {useRouter} from "next/router";
+import {useBoardAllQuery} from "@/queries/board/all";
+import {GetStaticPaths} from "next";
 import {useEffect, useRef, useState} from "react";
 import {BoxTask} from "@/components/pages/board/BoxTask";
 
-export default function BoardDetail() {
-  const router = useRouter();
+export default function BoardDetail({uuid}: {uuid: string}) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [tasks, setTasks] = useState<TTasks>([]);
-  const tasksQueryData = useTaskAllQuery(String(router.query.uuid));
+  const boardsQueryData = useBoardAllQuery(uuid);
 
   useEffect(() => {
-    if (tasksQueryData) {
+    if (boardsQueryData) {
       // setTasks(tasksQueryData.data.tasks);
     }
-  }, [tasksQueryData]);
+    console.log('boardsQueryData', boardsQueryData);
+  }, [boardsQueryData]);
 
   useEffect(() => {
     if (!contentRef || !contentRef.current) return;
@@ -94,4 +94,19 @@ export default function BoardDetail() {
       )}
     </GlobalLayout>
   );
+}
+
+export const getStaticPaths: GetStaticPaths<{ uuid: string }> = () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+};
+
+export async function getStaticProps({ params: { uuid } }: { params: { uuid: string } }) {
+  return {
+    props: {
+      uuid: uuid,
+    },
+  };
 }
