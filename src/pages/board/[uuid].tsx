@@ -66,15 +66,11 @@ export default function BoardDetail({uuid}: {uuid: string}) {
     contentRef.current.addEventListener('mouseleave', onMouseLeave);
 
     return () => {
-      if (!contentRef.current) return;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      contentRef.current.removeEventListener('mousedown', onMouseDown);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      contentRef.current.removeEventListener('mouseup', onMouseUp);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      contentRef.current.removeEventListener('mousemove', onMouseMove);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      contentRef.current.removeEventListener('mouseleave', onMouseLeave);
+      if (!contentRef!.current) return;
+      contentRef!.current.removeEventListener('mousedown', onMouseDown);
+      contentRef!.current.removeEventListener('mouseup', onMouseUp);
+      contentRef!.current.removeEventListener('mousemove', onMouseMove);
+      contentRef!.current.removeEventListener('mouseleave', onMouseLeave);
     }
   }, [contentRef]);
 
